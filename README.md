@@ -34,4 +34,4 @@ gcc chaos_popup.c -o chaos_popup.exe -mwindows -luser32 -lwinmm
 
 ## License
 
-MIT
+Apache License 2.0. See [LICENSE](LICENSE). Copyright 2026 1337leets.
