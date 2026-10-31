@@ -27,7 +27,7 @@
 #define MAX_RUN_MS 90000      /* the program always exits by this time */
 #define MAX_SOUNDS 24         /* sounds allowed to overlap */
 #define SOUND_LIMIT_MS 5000   /* a single sound never runs longer than this */
-#define MAX_MONITORS 16
+#define MONITOR_LIMIT 16
 #define POLL_MS 10
 
 static const char *TITLES[] = {
@@ -86,7 +86,7 @@ static int sound_count;
 static HANDLE sound_slots;
 static MessageBoxTimeoutFn show_popup;
 
-static RECT monitors[MAX_MONITORS];
+static RECT monitors[MONITOR_LIMIT];
 static int monitor_count;
 
 static __thread RECT target_monitor;
@@ -189,7 +189,7 @@ static DWORD WINAPI popup_thread(LPVOID param) {
 
 static BOOL CALLBACK add_monitor(HMONITOR monitor, HDC dc, LPRECT rect, LPARAM data) {
     (void)monitor; (void)dc; (void)data;
-    if (monitor_count < MAX_MONITORS) monitors[monitor_count++] = *rect;
+    if (monitor_count < MONITOR_LIMIT) monitors[monitor_count++] = *rect;
     return TRUE;
 }
 
